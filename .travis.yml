@@ -1,0 +1,20 @@
+language: go
+
+go:
+  - "1.10.x"
+  - "1.x"
+  - master
+
+script:
+  - .travis-ci/compile.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: FFgleBgyN+mtSbzwSJLEKx7e3hTPhcvnbtxHNfvKoJ+aECnabns2jxCJ7BB5FIHoQSZio+fIdol9PEnWhf7y8ELxDxkFjgc+eNmarTd68C0CTm0L2bDWxhBzHTepC2xQV+Hn4o2Ruv0ThGqfm6hC4qkNpEon6eWoLFGdl9FxImVW2TA9/IEckW00NG6gz0PmKT1TQYdzmnKoLd3K0PumSSGRvmsoQFrCS2G4jWYfmAqmtxCIVTgDc8MzIC+xL5m3uXVfAEhp5xl9MAPoVZ8NVOLcY5tBBU4tStEdJzpjnjOUTvwiNOAM4Rc+q9rLKAd7GN76scpPw0BghjduyZcQOh/gwgoDIRD3P1x13CZkRTtFIgazhZHoWwbbx53kKntwZp4X3o2pju5nXr92FV/RKyIEYRe6bif0DcjCj4puZnXxfa6lnU/diOH9mtB10L4FMox5DUZCnhv+3kuxNdNfqw2iPBBXEbFTqTPD5dpYNT+TA8DGaaHQ/OT1mbMR9CxHCkoJy2vJBhTv+/JkugeYy9UeCGLLRSn5LpCUhaZwuTmQOygWpN3AYeXdhqNObgPS9RHpXKhApybSm8q5VUwViaLXbgqTDet4GZ8R+b4P40Dfcf/QyTM0huzbMjcjeOU+OVIUHSc8dLONaVBCwBA7b1Bh2AlpkX27/mEdwm3AaYQ=
+  file_glob: true
+  file: check_*.linux-*
+  skip_cleanup: true
+  on:
+    tags: true
+    go: "1.10.x"
