@@ -7,7 +7,6 @@ import (
 	"fmt"
 	_ "github.com/Al2Klimov/go-gen-source-repos"
 	. "github.com/Al2Klimov/go-monplug-utils"
-	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
 	"math"
 	"os"
@@ -31,25 +30,18 @@ var procUptime = regexp.MustCompile(`\A(\d+(?:\.\d+)?) `)
 var kernelInBoot = regexp.MustCompile(`\Avmlinuz`)
 
 func main() {
-	if terminal.IsTerminal(int(os.Stdout.Fd())) {
-		fmt.Printf(
-			"For the terms of use, the source code and the authors\nsee the projects this program is assembled from:\n\n  %s\n",
-			strings.Join(GithubcomAl2klimovGo_gen_source_repos, "\n  "),
-		)
-
-		return
-	}
-
-	if errsCLNK := checkLinuxNewkernel(); errsCLNK != nil {
-		for context, err := range errsCLNK {
-			fmt.Printf("%s: %s\n", context, err.Error())
-		}
-
-		os.Exit(3)
-	}
+	os.Exit(ExecuteCheck(onTerminal, checkLinuxNewkernel))
 }
 
-func checkLinuxNewkernel() map[string]error {
+func onTerminal() (output string) {
+	return fmt.Sprintf(
+		"For the terms of use, the source code and the authors\n"+
+			"see the projects this program is assembled from:\n\n  %s\n",
+		strings.Join(GithubcomAl2klimovGo_gen_source_repos, "\n  "),
+	)
+}
+
+func checkLinuxNewkernel() (status uint8, output string, perfdata PerfdataCollection, errs map[string]error) {
 	chBootTime := make(chan bootTime, 1)
 	chKernels := make(chan kernels, 1)
 
@@ -61,8 +53,6 @@ func checkLinuxNewkernel() map[string]error {
 
 	chBootTime = nil
 	chKernels = nil
-
-	var errs map[string]error = nil
 
 	if btTime.errs != nil {
 		errs = btTime.errs
@@ -79,12 +69,8 @@ func checkLinuxNewkernel() map[string]error {
 	}
 
 	if errs != nil {
-		return errs
+		return
 	}
-
-	var status int
-	var output string
-	var perfdata PerfdataCollection
 
 	if len(krnels.kernels) < 1 {
 		status = 1
@@ -124,13 +110,7 @@ func checkLinuxNewkernel() map[string]error {
 		}}
 	}
 
-	if _, errFP := fmt.Print(output + perfdata.String()); errFP != nil {
-		status = 3
-	}
-
-	os.Exit(status)
-
-	return nil
+	return
 }
 
 func getBootTime(ch chan bootTime) {
