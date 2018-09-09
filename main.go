@@ -27,7 +27,7 @@ type kernels struct {
 }
 
 var procUptime = regexp.MustCompile(`\A(\d+(?:\.\d+)?) `)
-var kernelInBoot = regexp.MustCompile(`\Avmlinuz`)
+var kernelInBoot = regexp.MustCompile(`\A(?:vmlinuz|kernel\.img\z)`)
 
 func main() {
 	os.Exit(ExecuteCheck(onTerminal, checkLinuxNewkernel))
