@@ -126,7 +126,7 @@ func getBootTime(ch chan bootTime) {
 	if match := procUptime.FindSubmatch(content); match == nil {
 		ch <- bootTime{errs: map[string]error{"cat /proc/uptime": errors.New("bad output: " + string(content))}}
 	} else if uptime, errPF := strconv.ParseFloat(string(match[1]), 64); errPF == nil {
-		ch <- bootTime{bootTime: now.Add(time.Duration(-uptime)), errs: nil}
+		ch <- bootTime{bootTime: now.Add(time.Duration(-uptime) * time.Second), errs: nil}
 	} else {
 		ch <- bootTime{errs: nil}
 	}
