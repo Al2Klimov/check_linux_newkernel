@@ -7,6 +7,7 @@ import (
 	"fmt"
 	_ "github.com/Al2Klimov/go-gen-source-repos"
 	. "github.com/Al2Klimov/go-monplug-utils"
+	pp "github.com/Al2Klimov/go-pretty-print"
 	"io/ioutil"
 	"math"
 	"os"
@@ -99,7 +100,7 @@ func checkLinuxNewkernel() (status uint8, output string, perfdata PerfdataCollec
 			output = "No kernels have been installed since boot"
 		} else {
 			status = 2
-			output = fmt.Sprintf("The kernel '/boot/%s' has been installed %s after boot", latestKernel, diff.String())
+			output = fmt.Sprintf("The kernel '/boot/%s' has been installed %s after boot", latestKernel, pp.Duration(diff, 2))
 		}
 
 		perfdata = PerfdataCollection{Perfdata{
