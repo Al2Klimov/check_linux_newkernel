@@ -3,16 +3,15 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	_ "github.com/Al2Klimov/go-gen-source-repos"
+	linux "github.com/Al2Klimov/go-linux-apis"
 	. "github.com/Al2Klimov/go-monplug-utils"
 	pp "github.com/Al2Klimov/go-pretty-print"
 	"io/ioutil"
 	"math"
 	"os"
 	"regexp"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -115,21 +114,13 @@ func checkLinuxNewkernel() (status uint8, output string, perfdata PerfdataCollec
 }
 
 func getBootTime(ch chan bootTime) {
-	content, errRF := ioutil.ReadFile("/proc/uptime")
-	if errRF != nil {
-		ch <- bootTime{errs: map[string]error{"cat /proc/uptime": errRF}}
+	uptime, errGUT := linux.GetUptime()
+	if errGUT != nil {
+		ch <- bootTime{errs: map[string]error{"cat /proc/uptime": errGUT}}
 		return
 	}
 
-	now := time.Now()
-
-	if match := procUptime.FindSubmatch(content); match == nil {
-		ch <- bootTime{errs: map[string]error{"cat /proc/uptime": errors.New("bad output: " + string(content))}}
-	} else if uptime, errPF := strconv.ParseFloat(string(match[1]), 64); errPF == nil {
-		ch <- bootTime{bootTime: now.Add(time.Duration(-uptime) * time.Second), errs: nil}
-	} else {
-		ch <- bootTime{errs: nil}
-	}
+	ch <- bootTime{bootTime: time.Now().Add(-uptime.UpTime), errs: nil}
 }
 
 func getKernels(ch chan kernels) {
