@@ -18,12 +18,12 @@
   revision = "3fbd2047cae930e76287dd4534dced0753029b3f"
 
 [[projects]]
-  branch = "master"
-  digest = "1:c50e6857eb3fbcbf0c618b55e3c0a99a3face7a693e5bf19e821a22a5c66a5e3"
+  digest = "1:2367486b6f735ef32e09d8bd8394167b6944aaef91a36788801ce460ff4051d8"
   name = "github.com/Al2Klimov/go-monplug-utils"
   packages = ["."]
   pruneopts = "UT"
-  revision = "61ebc15290797f4567b68b6eac8b90375331b7fe"
+  revision = "dbdf4280de62bb853ccf30eb8c1304cc10b97a22"
+  version = "v0.1"
 
 [[projects]]
   branch = "master"

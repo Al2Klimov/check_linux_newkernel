@@ -41,7 +41,7 @@ func onTerminal() (output string) {
 	)
 }
 
-func checkLinuxNewkernel() (status uint8, output string, perfdata PerfdataCollection, errs map[string]error) {
+func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map[string]error) {
 	chBootTime := make(chan bootTime, 1)
 	chKernels := make(chan kernels, 1)
 
@@ -73,7 +73,6 @@ func checkLinuxNewkernel() (status uint8, output string, perfdata PerfdataCollec
 	}
 
 	if len(krnels.kernels) < 1 {
-		status = 1
 		output = "No kernels found (ls /boot/vmlinuz*)"
 	} else {
 		var latestKernel string
@@ -95,10 +94,8 @@ func checkLinuxNewkernel() (status uint8, output string, perfdata PerfdataCollec
 		diff := latestKernelMTime.Sub(btTime.bootTime)
 
 		if diff < 0 {
-			status = 0
 			output = "No kernels have been installed since boot"
 		} else {
-			status = 2
 			output = fmt.Sprintf("The kernel '/boot/%s' has been installed %s after boot", latestKernel, pp.Duration(diff, 2))
 		}
 

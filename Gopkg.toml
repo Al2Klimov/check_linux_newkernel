@@ -34,8 +34,8 @@
   name = "github.com/Al2Klimov/go-linux-apis"
 
 [[constraint]]
-  branch = "master"
   name = "github.com/Al2Klimov/go-monplug-utils"
+  version = "0.1.0"
 
 [[constraint]]
   branch = "master"
