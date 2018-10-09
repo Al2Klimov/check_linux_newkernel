@@ -3,11 +3,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:216f0c19c1b456eef3f5439695ed19463e9c940d699133a1bf42da90db396e2c"
+  digest = "1:23f6ffccb3e18e44df23d4e9d5139ed6d5be0cec9f0e0d452484c2e562108116"
   name = "github.com/Al2Klimov/go-gen-source-repos"
   packages = ["."]
   pruneopts = "UT"
-  revision = "3618f47a09e8f7156abca3aacd4bb316c8b9295a"
+  revision = "9dfcdbdf9942cbfed94478d3c028afb3aad0c4a1"
 
 [[projects]]
   branch = "master"
