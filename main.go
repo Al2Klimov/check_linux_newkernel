@@ -72,6 +72,13 @@ func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map
 		return
 	}
 
+	perfdata = PerfdataCollection{Perfdata{
+		Label: "kernels",
+		Value: float64(len(krnels.kernels)),
+		Warn:  OptionalThreshold{true, false, 1, math.Inf(1)},
+		Min:   OptionalNumber{true, 0},
+	}}
+
 	if len(krnels.kernels) < 1 {
 		output = "No kernels found (ls /boot/vmlinuz*)"
 	} else {
@@ -99,12 +106,12 @@ func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map
 			output = fmt.Sprintf("The kernel '/boot/%s' has been installed %s after boot", latestKernel, pp.Duration(diff, 2))
 		}
 
-		perfdata = PerfdataCollection{Perfdata{
+		perfdata = append(perfdata, Perfdata{
 			Label: "mtime_boot_diff",
 			UOM:   "us",
 			Value: float64(diff) / float64(time.Microsecond),
 			Crit:  OptionalThreshold{IsSet: true, Inverted: true, Start: 0, End: math.Inf(1)},
-		}}
+		})
 	}
 
 	return
