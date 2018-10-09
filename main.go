@@ -80,7 +80,7 @@ func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map
 	}}
 
 	if len(krnels.kernels) < 1 {
-		output = "No kernels found (ls /boot/vmlinuz*)"
+		output = "No kernels found (ls /boot/{vmlinuz*,kernel.img})"
 	} else {
 		var latestKernel string
 		var latestKernelMTime time.Time
