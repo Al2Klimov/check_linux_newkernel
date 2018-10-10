@@ -12,5 +12,7 @@ RUN cd /go/src/github.com/Al2Klimov/check_linux_newkernel \
 
 FROM grandmaster/check-plugins-demo
 
+RUN chown nagios:nagios /boot
+
 COPY --from=build /go/bin/check_linux_newkernel /usr/lib/nagios/plugins/
-COPY icinga2/check_linux_newkernel.conf docker/icinga2-monobjs.conf /etc/icinga2/conf.d/
+COPY icinga2/check_linux_newkernel.conf docker/icinga2.conf /etc/icinga2/conf.d/
