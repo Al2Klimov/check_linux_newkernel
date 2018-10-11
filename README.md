@@ -6,6 +6,11 @@ whether a new Linux kernel has been installed since boot.
 To check whether a host should be rebooted, use this plugin
 together with [check_systemd_needrestart].
 
+## Demonstration
+
+1. `$ docker run -itp 8080:80 grandmaster/check_linux_newkernel`
+2. Open http://localhost:8080 and navigate to the (only) service
+
 ## Usage
 
 The [plug-and-play Linux binaries]
