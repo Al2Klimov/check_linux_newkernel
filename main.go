@@ -103,7 +103,7 @@ func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map
 		if diff < 0 {
 			output = "No kernels have been installed since boot"
 		} else {
-			output = fmt.Sprintf("The kernel '/boot/%s' has been installed %s after boot", latestKernel, pp.Duration(diff, 2))
+			output = fmt.Sprintf("The kernel '/boot/%s' has been installed %s after boot", latestKernel, pp.Duration(diff))
 		}
 
 		perfdata = append(perfdata, Perfdata{
