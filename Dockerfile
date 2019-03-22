@@ -15,4 +15,6 @@ FROM grandmaster/check-plugins-demo
 RUN chown nagios:nagios /boot
 
 COPY --from=build /go/bin/check_linux_newkernel /usr/lib/nagios/plugins/
+COPY docker/flap.pl /
+COPY docker/supervisord.conf /etc/supervisord/conf.d/flap.conf
 COPY icinga2/check_linux_newkernel.conf docker/icinga2.conf /etc/icinga2/conf.d/
