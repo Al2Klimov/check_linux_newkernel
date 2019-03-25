@@ -117,7 +117,7 @@ func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map
 	return
 }
 
-func getBootTime(ch chan bootTime) {
+func getBootTime(ch chan<- bootTime) {
 	uptime, errGUT := linux.GetUptime()
 	if errGUT != nil {
 		ch <- bootTime{errs: map[string]error{"cat /proc/uptime": errGUT}}
@@ -127,7 +127,7 @@ func getBootTime(ch chan bootTime) {
 	ch <- bootTime{bootTime: time.Now().Add(-uptime.UpTime), errs: nil}
 }
 
-func getKernels(ch chan kernels) {
+func getKernels(ch chan<- kernels) {
 	entries, errRD := ioutil.ReadDir("/boot")
 	if errRD != nil {
 		ch <- kernels{errs: map[string]error{"ls /boot": errRD}}
