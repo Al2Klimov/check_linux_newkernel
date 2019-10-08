@@ -3,19 +3,19 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:23f6ffccb3e18e44df23d4e9d5139ed6d5be0cec9f0e0d452484c2e562108116"
+  digest = "1:91dc33da5abcf542dd61ab9dae6fd800b7dca84595d0dd14d7b7c11926cbdf9a"
   name = "github.com/Al2Klimov/go-gen-source-repos"
   packages = ["."]
   pruneopts = "UT"
-  revision = "9dfcdbdf9942cbfed94478d3c028afb3aad0c4a1"
+  revision = "ed8c49be1cc795dcbfb1be2c95514aa304461ab2"
 
 [[projects]]
   branch = "master"
-  digest = "1:9340d40e5bccf1f5ef69505cc28927c7a8591413d7301ef06622c01871972a81"
+  digest = "1:b3956c96e99076d4d1ae18727ab0ce48389c5f22f251cb9bd6a28d4dfeb6c727"
   name = "github.com/Al2Klimov/go-linux-apis"
   packages = ["."]
   pruneopts = "UT"
-  revision = "3fbd2047cae930e76287dd4534dced0753029b3f"
+  revision = "58e368cd301d5ec71f2e7fde71dbe1a2da941311"
 
 [[projects]]
   digest = "1:2367486b6f735ef32e09d8bd8394167b6944aaef91a36788801ce460ff4051d8"
@@ -35,22 +35,22 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:3f3a05ae0b95893d90b9b3b5afdb79a9b3d96e4e36e099d841ae602e4aca0da8"
+  digest = "1:bbe51412d9915d64ffaa96b51d409e070665efc5194fcf145c4a27d4133107a4"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
   pruneopts = "UT"
-  revision = "0e37d006457bf46f9e6692014ba72ef82c33022c"
+  revision = "34f69633bfdcf9db92f698f8487115767eebef81"
 
 [[projects]]
   branch = "master"
-  digest = "1:575e6cd3c8c00d02a978e6e2ca66f58b013d09bbae6e3b1e37fca9f87b2d8ece"
+  digest = "1:66da9400d3f58a196e86efa1b0c8ea0b1aae330a6ec234b26ad27ba42f74f019"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "f02c79500a9c629cd7cf2f3abadbbf2f5a9161d3"
+  revision = "543471e840be449c53d44b32c7adf1261ad67e37"
 
 [solve-meta]
   analyzer-name = "dep"
