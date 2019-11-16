@@ -27,14 +27,6 @@ type kernel struct {
 	cTime, mTime time.Time
 }
 
-func (k *kernel) getLatestTime() time.Time {
-	if k.cTime.After(k.mTime) {
-		return k.cTime
-	} else {
-		return k.mTime
-	}
-}
-
 type kernels struct {
 	kernels map[string]kernel
 	errs    map[string]error
@@ -106,13 +98,13 @@ func checkLinuxNewkernel() (output string, perfdata PerfdataCollection, errs map
 		}
 
 		for kernelName, krnl := range krnels.kernels {
-			if krnl.getLatestTime().After(latestKernel.getLatestTime()) {
+			if krnl.mTime.After(latestKernel.mTime) {
 				latestKernelName = kernelName
 				latestKernel = krnl
 			}
 		}
 
-		diff := latestKernel.getLatestTime().Sub(btTime.bootTime)
+		diff := latestKernel.cTime.Sub(btTime.bootTime)
 
 		if diff < 0 {
 			output = "No kernels have been installed since boot"
