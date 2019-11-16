@@ -32,7 +32,6 @@ type kernels struct {
 	errs    map[string]error
 }
 
-var procUptime = regexp.MustCompile(`\A(\d+(?:\.\d+)?) `)
 var kernelInBoot = regexp.MustCompile(`\A(?:vmlinuz|kernel\.img\z)`)
 
 func main() {
