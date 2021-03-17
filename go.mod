@@ -9,4 +9,5 @@ require (
 	github.com/Al2Klimov/go-pretty-print v0.0.0-20181020210249-508c8cfc87b9
 	github.com/Al2Klimov/go-test-utils v0.0.0-20181021140159-44f0ba1d3916 // indirect
 	golang.org/x/crypto v0.0.0-20191122220453-ac88ee75c92c // indirect
+	golang.org/x/sys v0.0.0-20210317091845-390168757d9c // indirect
 )
